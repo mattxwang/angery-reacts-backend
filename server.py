@@ -41,7 +41,7 @@ class GetSong(Resource):
         if remote_song_info:
             song_url = remote_song_info['result']['url']
             lyrics = scrape_song_url(song_url)
-            return {'title': args['title'], 'artist': args['artist'], 'lyrics': lyrics}
+            return {'title': args['title'], 'artist': args['artist'], 'img_url': remote_song_info['result']['song_art_image_url'], 'lyrics': lyrics}
         else:
             return {'error': "song not found!"}
 
