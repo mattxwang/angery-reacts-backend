@@ -2,9 +2,11 @@ import os, requests
 from bs4 import BeautifulSoup
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
+from flask_cors import CORS
 
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
 
 genius_api_key = os.environ["GENIUS_API_KEY"]
 genius_api_website = "https://api.genius.com"
@@ -39,9 +41,10 @@ class GetSong(Resource):
                 break
 
         if remote_song_info:
+            # print(remote_song_info)
             song_url = remote_song_info['result']['url']
             lyrics = scrape_song_url(song_url)
-            return {'title': args['title'], 'artist': args['artist'], 'img_url': remote_song_info['result']['song_art_image_url'], 'lyrics': lyrics}
+            return {'title': remote_song_info['result']['title'], 'artist': remote_song_info['result']['primary_artist']['name'], 'img_url': remote_song_info['result']['song_art_image_url'], 'lyrics': lyrics}
         else:
             return {'error': "song not found!"}
 
