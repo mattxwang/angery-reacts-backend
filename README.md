@@ -2,7 +2,7 @@
 
 `angery reacts` is a quick web-app that I spun up that runs sentiment analysis on song lyrics: essentially, it'll scan song lyrics word by word, tagging how "positive" or "negative" they are, and then summing those weights to give a final answer. This approach is actually quite inaccurate: it doesn't look at phrases, adjectives, or other important NLP concepts that I don't really understand. However, it's a pretty fun tool to play around with!
 
-This is actually split into a frontend and a backend, and you'll need both in order to run the web app. This repo contains the backend, a simple flask server that sends requests to the [Genius API](https://docs.genius.com/) to grab song lyrics and other metadata. The [frontend](https://github.com/malsf21/angery-reacts) makes all the information look pretty.
+This is actually split into a frontend and a backend, and you'll need both in order to run the web app. This repo contains the backend, a simple flask server that sends requests to the [Genius API](https://docs.genius.com/) to grab song lyrics and other metadata. It uses [flask](http://flask.pocoo.org/), [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/), [gunicorn](https://gunicorn.org/), and [requests](https://3.python-requests.org/). The [frontend](https://github.com/malsf21/angery-reacts) makes all the information look pretty.
 
 ## development setup
 
@@ -61,3 +61,5 @@ If you do want to use Heroku and deploy your instance of the app, it's pretty si
 heroku create angery-reacts-api # or whatever name you want
 git push heroku master
 ```
+
+You'll also need to set the environment `GENIUS_API_KEY` as previously mentioned. You can do this under app > settings > config vars.
