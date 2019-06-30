@@ -45,3 +45,19 @@ To create a production build, use yarn build.
 
 A window should pop up automatically with the frontend running! If you run into any issues, feel free to [drop me an issue](https://github.com/malsf21/angery-reacts/issues) and I'll do my best to help you out.
 
+## production server
+
+I've configured this repo to deploy as a Heroku app, using `gunicorn`. You can test if the server works locally with:
+
+```sh
+$ gunicorn -w 4 server:app
+```
+
+This is a better webserver than Flask's development server. Then, it's up to you on how you want to use the production server - if you're not using something like Heroku, I'd probably recommend using nginx and uwsgi, as [this blog post explains](http://markjberger.com/flask-with-virtualenv-uwsgi-nginx/).
+
+If you do want to use Heroku and deploy your instance of the app, it's pretty simple. Create a Heroku account, [install the Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli), and the log in. Then, you just need to run:
+
+```sh
+heroku create angery-reacts-api # or whatever name you want
+git push heroku master
+```
